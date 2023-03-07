@@ -1,20 +1,37 @@
 <h1>New Post</h1>
 
+<% if @current_user %>
 <%= form_with :model => @post do |form| %>
-  <p>
+  <p class="mb-3">
     <%= form.label "title" %>
     <%= form.text_field "title" %>
   </p>
-  <p>
+
+  <p class="mb-3">
     <%= form.label "description" %>
     <%= form.text_field "description" %>
   </p>
-  <p>
+
+  <p class="mb-3">
     <%= form.label "posted_on" %>
     <%= form.date_field "posted_on" %>
   </p>
-  <p>
-    <%= form.submit %>
+
+  <p class="mb-3">
+    <%= form.label "image", :class => "form-label" %>
+    <%= form.text_field "image", :class => "form-control" %>
   </p>
-  <%= form.hidden_field "place_id" %>
+
+  <p class="mb-3">
+    <%= form.label "uploaded_image", :class => "form-label" %>
+    <%= form.file_field "uploaded_image", :class => "form-control" %>
+  </p>
+
+    <%= form.submit "Create Post", :class => "btn btn-primary" %>
+    <%= form.hidden_field "place_id" %>
+  <% end %>
+
+<% else %>
+  You must first <a href="/login">login</a> to post.
 <% end %>
+
